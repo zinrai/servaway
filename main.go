@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 )
 
@@ -17,7 +18,13 @@ const htmlBody = `<!DOCTYPE html>
 func main() {
 	port := flag.Int("port", 8080, "listening port")
 	retryAfter := flag.Int("retry-after", 3600, "Retry-After header value in seconds")
+	showVersion := flag.Bool("version", false, "Print version information and exit")
 	flag.Parse()
+
+	if *showVersion {
+		printVersion()
+		os.Exit(0)
+	}
 
 	retryAfterStr := strconv.Itoa(*retryAfter)
 
