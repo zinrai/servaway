@@ -1,7 +1,7 @@
 FROM golang:1.24-alpine AS build
 
 WORKDIR /src
-COPY go.mod main.go ./
+COPY go.mod *.go ./
 RUN go build -o /servaway
 
 FROM alpine:3.21
